@@ -1,54 +1,72 @@
-/* Correções essenciais para permitir o overflow e z-index */
+/* Reset e configuração global */
 html,
 body {
   margin: 0;
   padding: 0;
-  overflow: visible;
-  position: relative;
   font-family: Arial, sans-serif;
+  overflow-x: hidden; /* evita rolagem lateral */
 }
 
+/* Container das colunas (lado a lado em qualquer tela) */
 .container {
   display: flex;
-  flex-wrap: wrap; /* adiciona quebra de linha responsiva */
+  flex-direction: row;
+  flex-wrap: nowrap; /* mantém colunas lado a lado SEM empilhar */
+  width: 100%;
   overflow: visible;
-  position: relative;
 }
 
+/* Colunas ocupam 50% cada */
 .coluna {
   flex: 1;
   padding: 20px;
   box-sizing: border-box;
   overflow: visible;
   position: relative;
+  min-width: 0;
 }
 
+/* Fundo da coluna esquerda */
 .esquerda {
-  background-color: #d4fcd4; /* verde claro */
+  background-color: #d4fcd4;
   text-align: center;
 }
 
+/* Fundo da coluna direita */
 .direita {
   background-color: #d0e0ff;
   text-align: center;
 }
 
+/* Título principal */
+h1 {
+  text-align: center;
+  font-weight: bolder;
+  color: red;
+  padding: 20px 10px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Galeria com duas colunas por padrão */
 .galeria {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
-  max-width: 100%;
   margin: 0 auto;
   padding: 20px 0;
-  justify-items: center;
   width: 100%;
-
-  overflow: visible; /* Permite transbordar o grid */
-  position: relative; /* Necessário para z-index funcionar */
+  justify-items: center;
+  overflow: visible;
+  position: relative;
 }
 
-.item,
-.item-horizontal {
+/* Estilo para imagens VERTICAIS */
+.item {
+  width: 200px;
+  height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -61,16 +79,23 @@ body {
   z-index: 1;
 }
 
-.item {
-  width: 200px;
-  height: 300px;
-}
-
+/* Estilo para imagens HORIZONTAIS */
 .item-horizontal {
   width: 300px;
   height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 4px solid #7b0c04;
+  border-radius: 12px;
+  padding: 5px;
+  box-shadow: 0 2px 5px #7b0c04;
+  overflow: visible;
+  position: relative;
+  z-index: 1;
 }
 
+/* Estilo comum para imagens */
 .item img,
 .item-horizontal img {
   max-width: 100%;
@@ -83,35 +108,29 @@ body {
   display: block;
 }
 
+/* Zoom ao passar o mouse */
 .item img:hover,
 .item-horizontal img:hover {
   transform: scale(2);
-  z-index: 9999; /* Fica acima de tudo */
+  z-index: 9999;
 }
 
-h1 {
-  text-align: center;
-  font-weight: bolder;
-  color: red;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
-    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  padding: 20px 10px;
-  max-width: 100%;
-  box-sizing: border-box;
-}
+/* ⛔️ NÃO HÁ media query que empilhe colunas */
+/* O layout permanece lado a lado mesmo em telas pequenas */
 
-@media (max-width: 768px) {
-  .coluna {
-    flex: 100%; /* ocupa toda a largura */
-    max-width: 100%;
+/* 🔧 Ajuste fino para evitar overflow em dispositivos pequenos */
+@media (max-width: 600px) {
+  .item {
+    width: 45vw;
+    height: calc(45vw * 1.5); /* mantém proporção vertical */
+  }
+
+  .item-horizontal {
+    width: 70vw;
+    height: calc(70vw * 0.733); /* mantém proporção horizontal */
   }
 
   .galeria {
     grid-template-columns: 1fr;
-  }
-  .item,
-  .item-horizontal {
-    width: 90%;
-    height: auto;
   }
 }
