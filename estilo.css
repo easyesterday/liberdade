@@ -1,38 +1,36 @@
-/* Reset e configuração global */
+/* Reset e estrutura básica */
 html,
 body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  overflow-x: hidden; /* evita rolagem lateral */
+  overflow-x: hidden;
 }
 
-/* Container das colunas (lado a lado em qualquer tela) */
+/* Container com colunas lado a lado, com wrap */
 .container {
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap; /* mantém colunas lado a lado SEM empilhar */
+  flex-wrap: wrap; /* permite quebra controlada sem sobreposição */
   width: 100%;
-  overflow: visible;
 }
 
-/* Colunas ocupam 50% cada */
+/* Coluna base */
 .coluna {
-  flex: 1;
+  flex: 1 1 50%; /* base: 50%, mas pode encolher ou crescer */
   padding: 20px;
   box-sizing: border-box;
   overflow: visible;
   position: relative;
-  min-width: 0;
+  min-width: 300px; /* evita sobreposição */
 }
 
-/* Fundo da coluna esquerda */
+/* Coluna esquerda (com fundo verde) */
 .esquerda {
   background-color: #d4fcd4;
   text-align: center;
 }
 
-/* Fundo da coluna direita */
+/* Coluna direita (com fundo azul claro) */
 .direita {
   background-color: #d0e0ff;
   text-align: center;
@@ -50,20 +48,20 @@ h1 {
   box-sizing: border-box;
 }
 
-/* Galeria com duas colunas por padrão */
+/* Galeria de imagens */
 .galeria {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
+  width: 100%;
   margin: 0 auto;
   padding: 20px 0;
-  width: 100%;
   justify-items: center;
   overflow: visible;
   position: relative;
 }
 
-/* Estilo para imagens VERTICAIS */
+/* Imagens VERTICAIS */
 .item {
   width: 200px;
   height: 300px;
@@ -74,12 +72,12 @@ h1 {
   border-radius: 12px;
   padding: 5px;
   box-shadow: 0 2px 5px #7b0c04;
-  overflow: visible;
   position: relative;
   z-index: 1;
+  overflow: visible;
 }
 
-/* Estilo para imagens HORIZONTAIS */
+/* Imagens HORIZONTAIS */
 .item-horizontal {
   width: 300px;
   height: 220px;
@@ -90,12 +88,12 @@ h1 {
   border-radius: 12px;
   padding: 5px;
   box-shadow: 0 2px 5px #7b0c04;
-  overflow: visible;
   position: relative;
   z-index: 1;
+  overflow: visible;
 }
 
-/* Estilo comum para imagens */
+/* Imagens */
 .item img,
 .item-horizontal img {
   max-width: 100%;
@@ -115,22 +113,21 @@ h1 {
   z-index: 9999;
 }
 
-/* ⛔️ NÃO HÁ media query que empilhe colunas */
-/* O layout permanece lado a lado mesmo em telas pequenas */
-
-/* 🔧 Ajuste fino para evitar overflow em dispositivos pequenos */
-@media (max-width: 600px) {
-  .item {
-    width: 45vw;
-    height: calc(45vw * 1.5); /* mantém proporção vertical */
-  }
-
-  .item-horizontal {
-    width: 70vw;
-    height: calc(70vw * 0.733); /* mantém proporção horizontal */
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+  /* Mantém lado a lado se possível, mas evita sobreposição */
+  .coluna {
+    flex: 1 1 100%;
+    min-width: 100%;
   }
 
   .galeria {
     grid-template-columns: 1fr;
+  }
+
+  .item,
+  .item-horizontal {
+    width: 90%;
+    height: auto;
   }
 }
