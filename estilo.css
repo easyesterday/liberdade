@@ -10,6 +10,7 @@ body {
 
 .container {
   display: flex;
+  flex-wrap: wrap; /* adiciona quebra de linha responsiva */
   overflow: visible;
   position: relative;
 }
@@ -93,4 +94,13 @@ h1 {
   color: red;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
     'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  padding: 20px 10px;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .coluna {
+    flex: 100%; /* ocupa toda a largura */
+  }
 }
