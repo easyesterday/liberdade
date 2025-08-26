@@ -7,22 +7,24 @@ body {
   overflow-x: hidden;
 }
 
-/* Container flexível que permite quebra de linha */
+/* Container flexível com quebra de linha permitida */
 .container {
   display: flex;
-  flex-wrap: nowrap; /* não deixa as colunas quebrarem linha */
+  flex-wrap: wrap; /* permite quebras */
   width: 100%;
-  overflow-x: auto; /* permite rolagem horizontal caso necessário */
+  overflow-x: visible; /* evita cortar conteúdo */
+  box-sizing: border-box;
 }
 
-/* Colunas com largura fixa e mínima para evitar sobreposição */
+/* Colunas com metade da largura e limite máximo */
 .coluna {
-  flex: 0 0 50%; /* sempre metade da largura */
-  min-width: 320px; /* largura mínima para evitar encolhimento exagerado */
+  flex: 1 1 50%; /* flex-grow:1, flex-shrink:1, base 50% */
+  max-width: 50%; /* máximo 50% */
   padding: 20px;
   box-sizing: border-box;
   overflow: visible;
   position: relative;
+  min-width: 280px; /* evita encolher demais e ficar muito estreito */
 }
 
 /* Fundo das colunas */
@@ -48,7 +50,7 @@ h1 {
   box-sizing: border-box;
 }
 
-/* Galeria: grid com 2 colunas */
+/* Galeria grid */
 .galeria {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -93,7 +95,7 @@ h1 {
   z-index: 1;
 }
 
-/* Imagens: estilo comum */
+/* Imagens */
 .item img,
 .item-horizontal img {
   max-width: 100%;
@@ -106,36 +108,44 @@ h1 {
   display: block;
 }
 
-/* Zoom ao passar o mouse */
+/* Zoom no hover */
 .item img:hover,
 .item-horizontal img:hover {
   transform: scale(2);
   z-index: 9999;
 }
 
-/* RESPONSIVIDADE: telas pequenas */
+/* RESPONSIVIDADE */
 @media (max-width: 768px) {
-  /* Mantém colunas lado a lado, mas diminui largura para evitar overflow */
+  /* Container flex nowrap + scroll horizontal */
+  .container {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+  /* Colunas lado a lado, tamanho reduzido e sem sobreposição */
   .coluna {
-    flex: 0 0 50%;
-    min-width: 150px; /* reduz o mínimo para caber */
+    flex: 0 0 auto;
+    min-width: 250px; /* coluna estreita mas não muito */
+    max-width: 250px;
     padding: 10px;
   }
 
+  /* Galeria em coluna única */
   .galeria {
     grid-template-columns: 1fr;
     gap: 15px;
   }
 
-  /* Diminui imagens verticais */
+  /* Imagens verticais menores */
   .item {
-    width: 120px;
-    height: 180px;
+    width: 140px;
+    height: 210px;
   }
 
-  /* Diminui imagens horizontais */
+  /* Imagens horizontais menores */
   .item-horizontal {
-    width: 180px;
-    height: 130px;
+    width: 210px;
+    height: 150px;
   }
 }
