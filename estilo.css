@@ -132,7 +132,6 @@ h1 {
     max-width: 100%;
     padding: 10px;
     box-sizing: border-box;
-    min-width: 0; /* removido 280px */
   }
 
   .galeria {
@@ -161,6 +160,7 @@ h1 {
     transform: none;
   }
 }
+
 
 
 
