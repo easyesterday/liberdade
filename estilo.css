@@ -12,19 +12,19 @@ body {
   display: flex;
   flex-wrap: wrap; /* permite quebras */
   width: 100%;
-  overflow-x: visible; /* evita cortar conteúdo */
+  overflow-x: visible;
   box-sizing: border-box;
 }
 
 /* Colunas com metade da largura e limite máximo */
 .coluna {
-  flex: 1 1 50%; /* flex-grow:1, flex-shrink:1, base 50% */
-  max-width: 50%; /* máximo 50% */
+  flex: 1 1 50%;
+  max-width: 50%;
   padding: 20px;
   box-sizing: border-box;
   overflow: visible;
   position: relative;
-  min-width: 280px; /* evita encolher demais e ficar muito estreito */
+  min-width: 280px;
 }
 
 /* Fundo das colunas */
@@ -115,47 +115,56 @@ h1 {
   z-index: 9999;
 }
 
+/* ========================= */
+/*   RESPONSIVIDADE MOBILE   */
+/* ========================= */
 @media (max-width: 768px) {
-  /* Colunas empilhadas */
+  /* Empilha as colunas verticalmente */
   .container {
     flex-direction: column;
     flex-wrap: nowrap;
-    overflow-x: hidden; /* evita scroll horizontal */
+    overflow-x: hidden;
   }
 
   .coluna {
-    width: 100%;
+    flex: 0 0 100%;
     max-width: 100%;
+    width: 100%;
     padding: 10px;
+    box-sizing: border-box;
   }
 
-  /* Galeria em coluna única */
+  /* Galeria com 1 imagem por linha */
   .galeria {
     grid-template-columns: 1fr;
     gap: 15px;
   }
 
-  /* Imagens verticais menores */
-  .item {
-    width: 100%;
-    max-width: 200px;
-    height: auto;
-    margin: 0 auto;
-  }
-
-  /* Imagens horizontais menores */
+  /* Ajuste dos containers das imagens */
+  .item,
   .item-horizontal {
     width: 100%;
-    max-width: 300px;
     height: auto;
+    max-width: 100%;
     margin: 0 auto;
   }
 
-  /* Zoom desativado em mobile (opcional) */
+  /* Ajuste das imagens dentro dos containers */
+  .item img,
+  .item-horizontal img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  /* Remove zoom em telas pequenas */
   .item img:hover,
   .item-horizontal img:hover {
     transform: none;
   }
 }
+
+
 
 
