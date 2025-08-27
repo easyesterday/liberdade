@@ -120,28 +120,26 @@ h1 {
 /*   RESPONSIVIDADE MOBILE   */
 /* ========================= */
 @media (max-width: 768px) {
-  /* Empilha as colunas verticalmente */
   .container {
+    display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    overflow-x: hidden;
+    width: 100%;
   }
 
   .coluna {
-    flex: 0 0 100%;
-    max-width: 100%;
+    flex: 1 1 100%;
     width: 100%;
+    max-width: 100%;
     padding: 10px;
     box-sizing: border-box;
+    min-width: 0; /* removido 280px */
   }
 
-  /* Galeria com 1 imagem por linha */
   .galeria {
     grid-template-columns: 1fr;
     gap: 15px;
   }
 
-  /* Ajuste dos containers das imagens */
   .item,
   .item-horizontal {
     width: 100%;
@@ -150,7 +148,6 @@ h1 {
     margin: 0 auto;
   }
 
-  /* Ajuste das imagens dentro dos containers */
   .item img,
   .item-horizontal img {
     width: 100%;
@@ -159,12 +156,13 @@ h1 {
     object-fit: contain;
   }
 
-  /* Remove zoom em telas pequenas */
   .item img:hover,
   .item-horizontal img:hover {
     transform: none;
   }
 }
+
+
 
 
 
