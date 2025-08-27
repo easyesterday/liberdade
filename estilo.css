@@ -121,13 +121,13 @@ h1 {
 /* ========================= */
 @media (max-width: 768px) {
   .container {
-    display: flex;
     flex-direction: column;
-    width: 100%;
+    flex-wrap: nowrap;
+    overflow-x: hidden
   }
 
   .coluna {
-    flex: 1 1 100%;
+    flex: 0 0 100%;
     width: 100%;
     max-width: 100%;
     padding: 10px;
@@ -160,6 +160,7 @@ h1 {
     transform: none;
   }
 }
+
 
 
 
