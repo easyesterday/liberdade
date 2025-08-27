@@ -112,7 +112,7 @@ h1 {
 /* Zoom no hover */
 .item img:hover,
 .item-horizontal img:hover {
-  transform: scale(2);
+  transform: scale(1.5);
   z-index: 9999;
 }
 
@@ -123,7 +123,7 @@ h1 {
   /* Empilha as colunas verticalmente */
   .container {
     flex-direction: column;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     overflow-x: hidden;
   }
 
@@ -165,6 +165,7 @@ h1 {
     transform: none;
   }
 }
+
 
 
 
