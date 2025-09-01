@@ -123,7 +123,7 @@ h1 {
   .container {
     flex-direction: column;
     flex-wrap: nowrap;
-    overflow-x: hidden
+    overflow-x: hidden;
   }
 
   .coluna {
@@ -159,17 +159,9 @@ h1 {
   .item-horizontal img:hover {
     transform: none;
   }
+
+  /* ✅ NOVA REGRA para galeria horizontal */
+  .galeria.horizontal {
+    grid-template-columns: 1fr;
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
